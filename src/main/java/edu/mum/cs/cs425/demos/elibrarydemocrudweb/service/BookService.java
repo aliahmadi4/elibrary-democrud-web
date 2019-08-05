@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.demos.elibrarydemocrudweb.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -13,7 +14,12 @@ public interface BookService {
     public abstract Book getBookById(Integer bookId);
     public abstract void deleteBookById(Integer bookId);
     
+    
     //paging
     public abstract Page<Book> getAllBooksPaged(int pageNo);
     public abstract Optional<Book> findByISBN(String isbn);
+    
+    //new
+    public abstract List<Book> getBookByTitle(String title);
+    public abstract List<Book> getBookByPublisher(String publisher);
 }

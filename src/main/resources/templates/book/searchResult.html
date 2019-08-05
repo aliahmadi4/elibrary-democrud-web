@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="">
+<meta name="author" content="O. Kalu">
+<link rel="icon" href="favicon.ico">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+</head>
+<body>
+	<div style="padding-top: 1em;" class="container">
+	<h1>Search Result</h1>
+		<div th:if="${books}!=null">
+			<div style="font-size: 1em">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">ISBN</th>
+							<th scope="col">Book Title</th>
+							<th scope="col">Overdue Fee</th>
+							<th scope="col">Publisher</th>
+							<th scope="col">Date Published</th>
+							<th scope="col">&nbsp;</th>
+							<th scope="col">&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="book,iterStat : ${books}">
+							<!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
+							<th scope="row" th:text="${iterStat.count}"></th>
+							<td th:text="${book.isbn}"></td>
+							<td th:text="${book.title}"></td>
+							<td th:text="${book.overdueFee}"></td>
+							<td th:text="${book.publisher}"></td>
+							<td th:text="${book.datePublished}"></td>
+							<td><a
+								th:href="@{'/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}">Edit</a></td>
+							<td><a data-toggle="modal"
+								data-target="#confirmDeleteBookModal"
+								th:href="@{'/elibrary/book/delete/' + ${book.bookId}}">Delete</a>
+								<!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+								<!--                            Launch demo modal--> <!--                        </button>-->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

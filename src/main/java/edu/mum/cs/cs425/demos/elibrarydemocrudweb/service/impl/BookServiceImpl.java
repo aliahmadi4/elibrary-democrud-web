@@ -65,4 +65,14 @@ public class BookServiceImpl implements BookService {
 	public Optional<Book> findByISBN(String isbn) {
 		return repository.findBookByIsbn(isbn);
 	}
+
+	@Override
+	public List<Book> getBookByTitle(String title) {
+		return repository.findBookByTitle(title);
+	}
+
+	@Override
+	public List<Book> getBookByPublisher(String publisher) {
+		return repository.findBookByPublisher(publisher);
+	}
 }
